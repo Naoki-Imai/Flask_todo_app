@@ -29,6 +29,8 @@ class Todo(db.Model):
   def create_todo(self):
     db.session.add(self)
   
+  def update_todo(self, todo_name):
+    self.todo_name = todo_name
   # todoのis_doneをTrue
   def todo_is_done(self):
     self.is_done = True

@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}
-Todo作成 - {{ super() }}
+Todo編集 - {{ super() }}
 {% endblock %}
 {% block content %}
 {% from "_formhelper.html" import render_field %}
 
-<h1>Todo新規作成</h1>
+<h1>Todo編集</h1>
 <form method="POST">
   {{ form.csrf_token }}
-  {{ render_field(form.todo_name)}}
+  {{ render_field(form.todo_name, value=todo.todo_name)}}
   {{ form.submit() }}
 </form>
 {% endblock %}

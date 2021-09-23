@@ -11,10 +11,10 @@ Todo一覧 - {{ super() }}
     <thead>
       <tr>
         <th>#</th>
-        <th>todo</th>
-        <th>limit</th>
-        <th>編集</th>
-        <th>削除</th>
+        <th>タスク名</th>
+        <th>有効期限</th>
+        <th>編集ボタン</th>
+        <th>完了ボタン</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@ Todo一覧 - {{ super() }}
           <th>{{ loop.index }}</th>
           <th>{{ todo.todo_name }}</th>
           <th>リミット実装予定</th>
-          <th><a href="#" class="btn btn-success">編集</a></th>
+          <th><a href="{{ url_for('app.update_todo', id=todo.id)}}" class="btn btn-success">編集</a></th>
           <th>
             <form action="{{ url_for('app.done_todo', id=todo.id)}}" method="POST">
               <input type="submit" value="完了" class="btn btn-primary">
@@ -44,10 +44,10 @@ Todo一覧 - {{ super() }}
     <thead>
       <tr>
         <th>#</th>
-        <th>todo</th>
-        <th>limit</th>
-        <th>編集</th>
-        <th>完了</th>
+        <th>タスク名</th>
+        <th>有効期限</th>
+        <th>戻すボタン</th>
+        <th>削除ボタン</th>
       </tr>
     </thead>
     <tbody>

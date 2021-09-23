@@ -5,5 +5,5 @@ from wtforms.fields import (
 from wtforms.validators import DataRequired
 
 class TodoForm(Form):
-  todo_name = StringField('TodoName：', validators=[ DataRequired() ])
-  submit = SubmitField('ADD')
+  todo_name = StringField('タスク名：', validators=[ DataRequired() ])
+  submit = SubmitField('追加')

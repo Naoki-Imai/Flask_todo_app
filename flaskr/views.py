@@ -51,5 +51,17 @@ def done_todo(id):
     return redirect(url_for('app.show_todo'))
   return redirect(url_for('app.home'))
 
+@bp.route('/todo/<int:id>/update', methods=['GET', 'POST'])
+def update_todo(id):
+  todo = Todo.select_todo_by_id(id)
+  form = TodoForm(request.form)
+  if request.method == 'POST' and form.validate():
+    with db.session.begin(subtransactions=True):
+      todo.update_todo(form.todo_name.data)
+    db.session.commit()
+    flash('タスクを更新しました')
+    return redirect(url_for('app.show_todo'))
+  return render_template('update_todo.html', form=form, todo=todo)
+      
 
 ########################################
