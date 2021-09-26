@@ -1,9 +1,5 @@
-from logging import DEBUG
-from flask.app import Flask
-
-from flask.templating import render_template
 from flaskr import db
-from datetime import datetime
+from datetime import date, datetime
 
 class Todo(db.Model):
 
@@ -13,10 +9,12 @@ class Todo(db.Model):
   todo_name = db.Column(db.String(64), index=True, nullable=False)
   create_at = db.Column(db.DateTime, default=datetime.now)
   update_at = db.Column(db.DateTime, default=datetime.now)
+  limit_date = db.Column(db.DateTime)
   is_done = db.Column(db.Boolean, default=False)
 
-  def __init__(self, todo_name):
+  def __init__(self, todo_name, limit_date):
     self.todo_name = todo_name
+    self.limit_date = limit_date
 
   @classmethod
   def select_all_todo(cls):
@@ -29,11 +27,14 @@ class Todo(db.Model):
   def create_todo(self):
     db.session.add(self)
   
-  def update_todo(self, todo_name):
+  def update_todo(self, todo_name, limit_date):
     self.todo_name = todo_name
+    self.limit_date = limit_date
+    # self.update_at = datetime.now()
   # todoのis_doneをTrue
   def todo_is_done(self):
     self.is_done = True
+    # self.update_at = datetime.now
   # 完了Todoをselect
   @classmethod
   def select_done_todo(cls):

@@ -9,6 +9,7 @@ Todo作成 - {{ super() }}
 <form method="POST">
   {{ form.csrf_token }}
   {{ render_field(form.todo_name)}}
+  {{ render_field(form.limit_date, value=limit_date)}}
   {{ form.submit() }}
 </form>
 {% endblock %}

@@ -4,7 +4,7 @@ Todo一覧 - {{ super() }}
 {% endblock %}
 {% block content %}
 <div class="jumbotron">
-  <p>Todo一覧</p>
+  <p>Todo</p>
 </div>
 {% if todos %}
   <table class="table">
@@ -22,7 +22,7 @@ Todo一覧 - {{ super() }}
         <tr>
           <th>{{ loop.index }}</th>
           <th>{{ todo.todo_name }}</th>
-          <th>リミット実装予定</th>
+          <th>{{ todo.limit_date }}</th>
           <th><a href="{{ url_for('app.update_todo', id=todo.id)}}" class="btn btn-success">編集</a></th>
           <th>
             <form action="{{ url_for('app.done_todo', id=todo.id)}}" method="POST">
@@ -37,7 +37,7 @@ Todo一覧 - {{ super() }}
   <p>現在登録されてるTodoはありません</p>
 {% endif %}
 <div class="jumbotron">
-  <p>完了しているTodo</p>
+  <p>Done</p>
 </div>
 {% if done_todo_items %}
   <table class="table">
