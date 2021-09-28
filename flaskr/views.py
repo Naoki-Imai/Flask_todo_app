@@ -1,9 +1,9 @@
-from flaskr.models import Todo
+from flaskr.models import Category, Todo
 from flask import Blueprint, redirect, render_template, flash, request
 from flaskr import db
 from flask.helpers import url_for
 from flaskr.models import Todo
-from flaskr.forms import TodoForm
+from flaskr.forms import TodoForm, CategoryForm
 from datetime import date, datetime
 
 
@@ -70,5 +70,30 @@ def update_todo(id):
     return redirect(url_for('app.show_todo'))
   return render_template('update_todo.html', form=form, todo=todo)
 
-
 ########################################
+
+############ category ######################
+@bp.route('/category')
+def show_category():
+  categories = Category.select_all_category()
+  return render_template('show_category.html', categories=categories)
+
+@bp.route('/category/create', methods=['GET', 'POST'])
+def create_category():
+  form = CategoryForm(request.form)
+  if request.method == 'POST' and form.validate():
+    category = Category(category_name = form.category_name.data)
+    with db.session.begin(subtransactions=True):
+      category.create_category()
+    db.session.commit()
+    flash('カレゴリーを作成しました')
+    return redirect( url_for('app.show_category'))
+  return render_template('create_category.html', form=form)
+
+# update
+
+# delete
+
+
+
+############################################

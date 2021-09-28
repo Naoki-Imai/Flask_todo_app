@@ -9,3 +9,7 @@ class TodoForm(Form):
   todo_name = StringField('タスク名：', validators=[ DataRequired() ])
   limit_date = DateField('期限：', validators=[ DataRequired() ])
   submit = SubmitField('追加')
+
+class CategoryForm(Form):
+  category_name = StringField('カテゴリ名：', validators=[ DataRequired() ])
+  submit = SubmitField('作成')

@@ -14,6 +14,8 @@
     <a class="navbar-brand" href="{{ url_for('app.home')}}">ホーム</a>
     <a class="navbar-brand" href="{{ url_for('app.show_todo')}}">Todo一覧</a>
     <a class="navbar-brand" href="{{ url_for('app.create_todo')}}">Todo作成</a>
+    <a class="navbar-brand" href="{{ url_for('app.show_category')}}">Category一覧</a>
+    <a class="navbar-brand" href="{{ url_for('app.create_category')}}">Category作成</a>
   </nav>
   {% for message in get_flashed_messages() %}
     <p>{{ message }}</p>

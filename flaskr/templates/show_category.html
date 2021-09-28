@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+Category一覧 - {{ super() }}
+{% endblock %}
+{% block content %}
+<h1>Category一覧</h1>
+{% if categories %}
+  <ul>
+    {% for category in categories %}
+      <li>{{ category.category_name }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>カレゴリーが存在しません。<a href="#">作成してください</a></p>
+{% endif %}
+{% endblock %}
