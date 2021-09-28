@@ -6,6 +6,7 @@ from flaskr.models import Todo
 from flaskr.forms import TodoForm
 from datetime import date, datetime
 
+
 bp = Blueprint('app', __name__, url_prefix='')
 
 ############ home ####################
