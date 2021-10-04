@@ -91,7 +91,17 @@ def create_category():
   return render_template('create_category.html', form=form)
 
 # update
-
+@bp.route('/category/<int:id>/update', methods=['GET', 'POST'])
+def update_category(id):
+  category = Category.select_category_by_id(id)
+  form = CategoryForm(request.form)
+  if request.method == 'POST' and form.validate():
+    with db.session.begin(subtransactions=True):
+      category.update_category(form.category_name.data)
+    db.session.commit()
+    flash('カレゴリーを更新しました')
+    return redirect(url_for('app.show_category'))
+  return render_template('update_category.html', category=category, form=form)
 # delete
 
 

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+Category編集 - {{ super() }}
+{% endblock %}
+{% block content %}
+{% from "_formhelper.html" import render_field %}
+<h1>Category編集</h1>
+<form method="POST">
+  {{ form.csrf_token }}
+  {{ render_field(form.category_name, value=category.category_name)}}
+  {{ form.submit() }}
+</form>
+{% endblock %}

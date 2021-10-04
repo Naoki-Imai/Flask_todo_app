@@ -53,15 +53,15 @@ Todo一覧 - {{ super() }}
     <tbody>
       {% for done_todo_item in done_todo_items %}
         <tr>
-          <th>{{ loop.index }}</th>
-          <th>{{ done_todo_item.todo_name }}</th>
-          <th>リミット実装予定</th>
-          <th><a href="#" class="btn btn-success">戻す</a></th>
-          <th>
+          <td>{{ loop.index }}</td>
+          <td>{{ done_todo_item.todo_name }}</td>
+          <td>リミット実装予定</th>
+          <td><a href="#" class="btn btn-success">戻す</a></td>
+          <td>
             <form action="{{ url_for('app.done_todo', id=done_todo_item.id)}}" method="POST">
-              <input type="submit" value="削除" class="btn btn-primary">
+              <input type="submit" value="削除" class="btn btn-danger">
             </form>
-          </th>
+          </td>
         </tr>
       {% endfor %}
     </tbody>

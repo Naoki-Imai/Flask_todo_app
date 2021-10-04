@@ -20,6 +20,13 @@ class Category(db.Model):
   def create_category(self):
     db.session.add(self)
 
+  @classmethod
+  def select_category_by_id(cls, id):
+    return cls.query.filter_by(id=id).first()
+
+  def update_category(self, category_name):
+    self.category_name = category_name
+
 class Todo(db.Model):
 
   __tablename__ = 'todos'
